@@ -1,0 +1,4 @@
+**The following images are derivatives of "Material design icons" by Google, used under the Apache License 2.0 (available at http://www.apache.org/licenses/LICENSE-2.0).
+MultiplePlayers-SwiftUI/Assets.xcassets/icon-layout.imageset/icon-layout.svg
+MultiplePlayers-SwiftUI/Assets.xcassets/icon-pause.imageset/icon-pause.svg
+MultiplePlayers-SwiftUI/Assets.xcassets/icon-play.imageset/icon-svg
