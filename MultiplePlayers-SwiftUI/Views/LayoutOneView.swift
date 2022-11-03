@@ -27,27 +27,54 @@ struct LayoutOneView: View {
     }
 
     var body: some View {
-        LazyVGrid(columns: gridColumns, spacing: 8, content: {
+        if #available(iOS 16.0, *) {
+            Grid {
+                GridRow {
+                    PlayerView(playerModel: player1)
+                        .frame(height: largeVideoHeight)
+                        .gridCellColumns(2)
 
-            PlayerView(playerModel: player1)
-                .frame(height: largeVideoHeight)
+                    if orientation.isLandscape {
+                        VStack(spacing: 8, content: {
+                            PlayerView(playerModel: player2)
+                                .frame(height: smallVideoHeight)
+                            PlayerView(playerModel: player3)
+                                .frame(height: smallVideoHeight)
+                        })
+                    }
+                }
 
-            if orientation.isPortrait {
-                HStack(spacing: 8, content: {
-                    PlayerView(playerModel: player2)
-                        .frame(height: smallVideoHeight)
-                    PlayerView(playerModel: player3)
-                        .frame(height: smallVideoHeight)
-                })
-            } else {
-                VStack(spacing: 8, content: {
-                    PlayerView(playerModel: player2)
-                        .frame(height: smallVideoHeight)
-                    PlayerView(playerModel: player3)
-                        .frame(height: smallVideoHeight)
-                })
+                if orientation.isPortrait {
+                    GridRow {
+                        PlayerView(playerModel: player2)
+                            .frame(height: smallVideoHeight)
+                        PlayerView(playerModel: player3)
+                            .frame(height: smallVideoHeight)
+                    }
+                }
             }
-        })
-        .padding(8)
+        } else {
+            LazyVGrid(columns: gridColumns, spacing: 8, content: {
+                PlayerView(playerModel: player1)
+                    .frame(height: largeVideoHeight)
+
+                if orientation.isPortrait {
+                    HStack(spacing: 8, content: {
+                        PlayerView(playerModel: player2)
+                            .frame(height: smallVideoHeight)
+                        PlayerView(playerModel: player3)
+                            .frame(height: smallVideoHeight)
+                    })
+                } else {
+                    VStack(spacing: 8, content: {
+                        PlayerView(playerModel: player2)
+                            .frame(height: smallVideoHeight)
+                        PlayerView(playerModel: player3)
+                            .frame(height: smallVideoHeight)
+                    })
+                }
+            })
+            .padding(8)
+        }
     }
 }
