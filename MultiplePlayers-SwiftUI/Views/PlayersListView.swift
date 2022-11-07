@@ -5,7 +5,6 @@ struct PlayersListView: View {
     @State private var viewModel = ViewModel()
     @State private var isPaused = false
     @State private var layout: Int = 1
-    @State private var orientation = UIDevice.current.orientation
 
     init() {
         viewModel.updatePlayers(for: layout)
@@ -14,6 +13,7 @@ struct PlayersListView: View {
     var body: some View {
         ZStack {
             view(for: layout)
+                .environmentObject(DeviceOrientation())
             VStack {
                 Spacer()
                 ControlButtonsView(
@@ -21,12 +21,6 @@ struct PlayersListView: View {
                     layoutButtonAction: toggleLayout,
                     isPaused: isPaused
                 )
-            }
-        }
-        .onAppear { orientation = UIDevice.current.orientation }
-        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-            if UIDevice.current.orientation.isValidInterfaceOrientation {
-                orientation = UIDevice.current.orientation
             }
         }
     }
@@ -48,20 +42,17 @@ struct PlayersListView: View {
             LayoutOneView(
                 player1: viewModel.player1,
                 player2: viewModel.player2,
-                player3: viewModel.player3,
-                orientation: orientation
+                player3: viewModel.player3
             )
         case 2:
             LayoutTwoView(
                 player1: viewModel.player1,
-                player2: viewModel.player2,
-                orientation: orientation
+                player2: viewModel.player2
             )
         case 3:
             LayoutThreeView(
                 player1: viewModel.player1,
-                player2: viewModel.player2,
-                orientation: orientation
+                player2: viewModel.player2
             )
         default:
             fatalError("Unsupported layout style: \(layout)")

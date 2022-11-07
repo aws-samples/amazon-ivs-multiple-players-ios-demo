@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct LayoutOneView: View {
+    @EnvironmentObject var orientation: DeviceOrientation
     var player1: PlayerModel
     var player2: PlayerModel
     var player3: PlayerModel
-    var orientation: UIDeviceOrientation
 
     private var largeVideoHeight: CGFloat {
         orientation.isPortrait ? largeVideoWidth * 9 / 16 : UIScreen.main.bounds.height * 0.8
