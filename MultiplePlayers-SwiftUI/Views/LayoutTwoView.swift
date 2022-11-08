@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct LayoutTwoView: View {
+    @EnvironmentObject var orientation: DeviceOrientation
     var player1: PlayerModel
     var player2: PlayerModel
-    var orientation: UIDeviceOrientation
 
     private let portraitColumns = [
         GridItem(.flexible())
