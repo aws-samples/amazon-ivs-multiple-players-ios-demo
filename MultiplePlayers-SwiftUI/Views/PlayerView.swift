@@ -5,7 +5,7 @@ struct PlayerView: View {
     var playerModel: PlayerModel
 
     var body: some View {
-        IVSPlayerViewWrapper(actualView: playerModel.playerView)
+        IVSPlayerViewWrapper(playerModel: playerModel)
             .background(Color(.sRGB, red: 0.1, green: 0.1, blue: 0.1, opacity: 1))
             .cornerRadius(10)
     }
