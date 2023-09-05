@@ -9,17 +9,16 @@ enum MaxQuality: String {
 }
 
 struct IVSPlayerViewWrapper: UIViewRepresentable {
-    let actualView: IVSPlayerView?
+    let playerModel: PlayerModel
 
     func makeUIView(context: Context) -> IVSPlayerView {
-        guard let view = actualView else {
-            return IVSPlayerView()
-        }
-        return view
+        let playerView = IVSPlayerView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        playerView.videoGravity = .resizeAspectFill
+        return playerView
     }
 
     func updateUIView(_ uiView: IVSPlayerView, context: Context) {
-        uiView.setNeedsLayout()
+        uiView.player = playerModel.player
     }
 }
 

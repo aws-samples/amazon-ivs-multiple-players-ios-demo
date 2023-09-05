@@ -38,13 +38,9 @@ class PlayerModel: Hashable {
     func play(_ stringUrl: String, maxAllowedQuality: MaxQuality = .high) {
         maxQuality = maxAllowedQuality
         player = IVSPlayer()
-        playerView = IVSPlayerView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 
         player?.delegate = playerDelegate
         player?.muted = true
-
-        playerView?.player = player
-        playerView?.videoGravity = .resizeAspectFill
 
         if let url = URL(string: stringUrl) {
             player?.load(url)
