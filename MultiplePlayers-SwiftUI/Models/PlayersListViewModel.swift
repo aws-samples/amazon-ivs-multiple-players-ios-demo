@@ -25,11 +25,9 @@ extension PlayersListView {
             case 2:
                 player1.play(videoUrls[3], maxAllowedQuality: .medium)
                 player2.play(videoUrls[4], maxAllowedQuality: .medium)
-                player3.play("")
             case 3:
                 player1.play(videoUrls[5], maxAllowedQuality: .medium)
                 player2.play(videoUrls[6], maxAllowedQuality: .low)
-                player3.play("")
             default:
                 fatalError("Unsupported layout style: \(layout)")
             }

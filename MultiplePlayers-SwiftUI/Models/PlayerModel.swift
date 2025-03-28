@@ -1,15 +1,14 @@
 import AmazonIVSPlayer
 
 class PlayerModel: Hashable {
-    let url: String
     let playerDelegate: IVSPlayer.Delegate?
 
+    var url: String = ""
     var playerView: IVSPlayerView?
     var player: IVSPlayer?
     var maxQuality: MaxQuality
 
     init(delegate: IVSPlayer.Delegate?) {
-        self.url = ""
         self.maxQuality = .high
         self.playerDelegate = delegate
 
@@ -37,13 +36,16 @@ class PlayerModel: Hashable {
 
     func play(_ stringUrl: String, maxAllowedQuality: MaxQuality = .high) {
         maxQuality = maxAllowedQuality
+        url = stringUrl
         player = IVSPlayer()
 
         player?.delegate = playerDelegate
         player?.muted = true
 
-        if let url = URL(string: stringUrl) {
+        if let url = URL(string: url) {
             player?.load(url)
+        } else {
+            print("❌ could not load playback url: \(stringUrl)")
         }
     }
 }
