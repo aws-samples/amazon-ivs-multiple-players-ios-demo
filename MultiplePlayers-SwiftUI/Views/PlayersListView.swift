@@ -13,7 +13,6 @@ struct PlayersListView: View {
     var body: some View {
         ZStack {
             view(for: layout)
-                .environmentObject(DeviceOrientation())
             VStack {
                 Spacer()
                 ControlButtonsView(
